@@ -1,29 +1,31 @@
 'use strict';
 
 var mustache = require("mustache");
-var marked = require("markdown");
+var marked = require("marked");
+var fs = require("fs");
 var Transform = require("stream").Transform;
 
 //set up parser to read data from markdown files
 var parser = new Transform();
-parser._transform = function (data, done) {
+parser._transform = function (data, encoding, done) {
     this.push(data);
     done();
 };
 
-//pipe the stream through the parser
+//pipe the stream through the parser and output to the console as a quick check that parser is working
 process.stdin
     .pipe(parser)
     .pipe(process.stdout);
 
 process.stdout.on('error', process.exit);
 
-//set up the directory structure for source files. Default is from script execution root.
-function files(source = __dirname){
+
+//set up the directory structure for __dirname files. Default is from script execution root.
+function files(){
     var inputs = {};
-    inputs.includes = source + '/_includes';
-    inputs.layouts = source + '/_layouts';
-    inputs.posts = source + '/_posts';
+    inputs.includes = __dirname + '/_includes';
+    inputs.layouts = __dirname + '/_layouts';
+    inputs.posts = __dirname + '/_posts';
     
     return inputs;
 }
