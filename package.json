@@ -1,0 +1,19 @@
+{
+  "name": "blog-runner",
+  "version": "0.1.0",
+  "description": "A simple JavaScript static site generator built for bloggers",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NAlexPear/blog-runner.git"
+  },
+  "author": "Alex Pearson",
+  "license": "MIT",
+  "devDependencies": {
+    "marked": "^0.3.5",
+    "mustache": "^2.2.1"
+  }
+}
