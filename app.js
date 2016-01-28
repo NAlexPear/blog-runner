@@ -1,39 +1,58 @@
 'use strict';
 
-var mustache = require("mustache");
-var marked = require("marked");
-var fs = require("fs");
+let mustache = require("mustache");
+let marked = require("marked");
+let fs = require("fs");
+let glob = require("glob");
 
-//read contents of files, log the output to the console
-//TODO: change from console.log to marked() parsing for markdown files
-function reader(path){
+//read contents of files, sends contents to a callback function (probably marked)
+function reader(path, callback){
   fs.readFile(path, 'utf8', (err, data) => {
     if (err) throw err;
-    console.log(data);
-
-    return data;
+    callback(data);
   });
 }
 
-//test reader() on hello.md in the example directory
-reader('example/hello.md');
-
+//quick test output for reader -> marked
+//SHOULD OUTPUT HTML TO THE CONSOLE
+function testReader(path){
+  reader(path, (data) => {
+    let output = marked(data);
+    console.log(output);
+  });
+};
 
 //set up the directory structure for __dirname files. Default is from script execution root.
-function files(){
-    var inputs = {};
-    inputs.includes = __dirname + '/_includes';
-    inputs.layouts = __dirname + '/_layouts';
-    inputs.posts = __dirname + '/_posts';
+function files(source){
+  if (!source) source = __dirname;
 
-    return inputs;
+  var paths = {};
+  paths.includes = source + '/_includes';
+  paths.posts = source + '/_posts';
+  paths.site = source + '/_site';
+
+  return paths;
 }
 
+//sets up directory structure in _site
+function structure(source){
+  var paths = files(source);
 
+  //build _site directory, unless it already exists
+  let sitePath = paths.site;
+  fs.mkdir(sitePath, (err) => {
+    if (err) {
+      if (err.code === 'EEXIST') console.log('the _site folder already exists, building some new children...')
+      else console.log(err);
+    } else console.log('_site directory initialized')
+  });
 
+  //get array of all posts in _posts directory using glob module
+  // glob()
+}
+structure('example');
 //turn all markdown from _posts directory into HTML content
-function md(){
-
+function md(data){
 }
 
 //Build final index.html files using mustache templating
@@ -41,7 +60,7 @@ function template(){
 
 }
 
-//use md() and template() to build
+//use md() and template() to build index.html files in the _site directory
 function build(){
 
 }
