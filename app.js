@@ -35,7 +35,7 @@ function files(source){
 }
 
 //sets up directory structure in _site
-function structure(source){
+function build(source){
   var paths = files(source);
 
   //build _site directory, unless it already exists
@@ -62,11 +62,16 @@ function structure(source){
       postDir(sitePath, post, 'day');
       postDir(sitePath, post, 'title');
 
-      console.log(post);
+      //move markdown data to index.html file at root
+      reader(doc, (data) => {
+        let html = marked(data);
+        let path = sitePath + '/' + post.year + '/' + post.month + '/' + post.day + '/' + post.title;
+        writer(path, html);
+      });
     });
   });
 }
-structure('example');
+build('example');
 
 //parse the filename and output an object of year, month, day, and title
 //filename must have the format YYYY-MM-DD-title-with-hyphens.*
@@ -82,7 +87,7 @@ function postParse(filename){
   return info;
 }
 
-//create new directories for the info property passed in
+//create new directories for the info property passed in, add index.html file to root using reader() and marked()
 function postDir(sitePath, info, key){
   let path = sitePath + '/';
   if (key === 'year') path += info.year;
@@ -93,7 +98,7 @@ function postDir(sitePath, info, key){
   fs.mkdir(path, (err) => {
     if (err) {
       if (err.code === 'EEXIST') {
-        console.log('the ' + path + ' folder already exists, building some new children...');
+        // console.log('the ' + path + ' folder already exists, building some new children...');
       }
       else console.log(err);
     } else {
@@ -103,16 +108,9 @@ function postDir(sitePath, info, key){
 
 }
 
-//turn all markdown from _posts directory into HTML content
-function md(data){
-}
-
-//Build final index.html files using mustache templating
-function template(){
-
-}
-
-//use md() and template() to build index.html files in the _site directory
-function build(){
-
+//write marked data to an index.html file at the root of a given path
+function writer(path, data){
+  fs.writeFile(path + '/index.html', data, (err) => {
+    if (err) console.log(err);
+  });
 }
