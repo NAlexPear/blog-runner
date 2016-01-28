@@ -71,6 +71,7 @@ function build(source){
     });
   });
 }
+//quick test on the example directory
 build('example');
 
 //parse the filename and output an object of year, month, day, and title
