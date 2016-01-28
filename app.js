@@ -3,21 +3,6 @@
 var mustache = require("mustache");
 var marked = require("marked");
 var fs = require("fs");
-// var Transform = require("stream").Transform;
-
-//set up parser to read data from markdown files in the stream (replaced with fs.readFile)
-// var parser = new Transform();
-// parser._transform = function (data, encoding, done) {
-//     this.push(data);
-//     done();
-// };
-//
-// //pipe the stream through the parser and output to the console as a quick check that parser is working
-// process.stdin
-//     .pipe(parser)
-//     .pipe(process.stdout);
-//
-// process.stdout.on('error', process.exit);
 
 //read contents of files, log the output to the console
 //TODO: change from console.log to marked() parsing for markdown files
