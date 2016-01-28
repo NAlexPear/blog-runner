@@ -10,6 +10,8 @@ function reader(path){
   fs.readFile(path, 'utf8', (err, data) => {
     if (err) throw err;
     console.log(data);
+
+    return data;
   });
 }
 
