@@ -65,7 +65,9 @@ function build(source){
 
   //build object of template includes from includes() function
   includes(paths.includes);
+
 }
+
 //quick test on the example directory
 build('example');
 
@@ -101,11 +103,14 @@ function postDir(sitePath, info, key){
       console.log(path + ' directory added!');
     }
   });
-
 }
 
 //write marked data to an index.html file at the root of a given path
 function writer(path, data){
+  //build layout here from a 'type' paramenter (e.g. posts or landing page)
+  //TODO --- build layout :D
+  layout(path);
+  //write concatenated data to index.html
   fs.writeFile(path + '/index.html', data, (err) => {
     if (err) console.log(err);
   });
@@ -117,7 +122,6 @@ function includes(includesPath){
 
   function objectMapper(data, key) {
     includes[key] = data;
-    console.log(includes);
   }
 
   glob(includesPath + '/**/*.html', (err, files) => {
@@ -132,4 +136,10 @@ function includes(includesPath){
   return includes;
 }
 
-//
+//populate layout file with HTML from includes object
+//parser will be separate function, type will be posts or some other paths property
+//TODO --- allow for a "content" property that changes with each post, rather than hard-code
+function layout(path){
+  console.log(path);
+
+}
