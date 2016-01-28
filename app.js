@@ -21,6 +21,7 @@ function files(source){
   paths.includes = source + '/_includes';
   paths.posts = source + '/_posts';
   paths.site = source + '/_site';
+  paths.layouts = source + '/_layouts';
 
   return paths;
 }
@@ -128,6 +129,7 @@ function includes(includesPath){
       });
     });
   });
-  // console.log(includes);
   return includes;
 }
+
+//
