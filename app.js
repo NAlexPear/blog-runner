@@ -1,9 +1,9 @@
 'use strict';
 
-let mustache = require("mustache");
-let marked = require("marked");
-let fs = require("fs");
-let glob = require("glob");
+const mustache = require("mustache");
+const marked = require("marked");
+const fs = require("fs");
+const glob = require("glob");
 
 //read contents of files, sends contents to a callback function (probably marked)
 function reader(path, callback){
@@ -13,33 +13,25 @@ function reader(path, callback){
   });
 }
 
-//quick test output for reader -> marked
-//SHOULD OUTPUT HTML TO THE CONSOLE
-function testReader(path){
-  reader(path, (data) => {
-    let output = marked(data);
-    console.log(output);
-  });
-};
-
 //set up the directory structure for __dirname files. Default is from script execution root.
 function files(source){
   if (!source) source = __dirname;
 
-  var paths = {};
+  let paths = {};
   paths.includes = source + '/_includes';
   paths.posts = source + '/_posts';
   paths.site = source + '/_site';
+  paths.layouts = source + '/_layouts';
 
   return paths;
 }
 
 //sets up directory structure in _site
 function build(source){
-  var paths = files(source);
+  const paths = files(source);
 
   //build _site directory, unless it already exists
-  let sitePath = paths.site;
+  const sitePath = paths.site;
   fs.mkdir(sitePath, (err) => {
     if (err) {
       if (err.code === 'EEXIST') console.log('the _site folder already exists, building some new children...');
@@ -49,12 +41,12 @@ function build(source){
 
   //get array of all posts in _posts directory using glob module
   //then create a new set of directories according to the post title
-  let postsPath = paths.posts;
+  const postsPath = paths.posts;
   glob(postsPath + '/**/*.md', (err, files) => {
     if (err) console.log(err);
     else files.forEach(doc => {
-      let filename = doc.substring(postsPath.length + 1);
-      let post = postParse(filename);
+      const filename = doc.substring(postsPath.length + 1);
+      const post = postParse(filename);
 
       //run down the directory structure rabbit hole for each post
       postDir(sitePath, post, 'year');
@@ -64,13 +56,18 @@ function build(source){
 
       //move markdown data to index.html file at root
       reader(doc, (data) => {
-        let html = marked(data);
-        let path = sitePath + '/' + post.year + '/' + post.month + '/' + post.day + '/' + post.title;
+        const html = marked(data);
+        const path = sitePath + '/' + post.year + '/' + post.month + '/' + post.day + '/' + post.title;
         writer(path, html);
       });
     });
   });
+
+  //build object of template includes from includes() function
+  includes(paths.includes);
+
 }
+
 //quick test on the example directory
 build('example');
 
@@ -106,12 +103,43 @@ function postDir(sitePath, info, key){
       console.log(path + ' directory added!');
     }
   });
-
 }
 
 //write marked data to an index.html file at the root of a given path
 function writer(path, data){
+  //build layout here from a 'type' paramenter (e.g. posts or landing page)
+  //TODO --- build layout :D
+  layout(path);
+  //write concatenated data to index.html
   fs.writeFile(path + '/index.html', data, (err) => {
     if (err) console.log(err);
   });
+}
+
+//build object for mustache view from _includes
+function includes(includesPath){
+  var includes = {};
+
+  function objectMapper(data, key) {
+    includes[key] = data;
+  }
+
+  glob(includesPath + '/**/*.html', (err, files) => {
+    if (err) console.log(err);
+    else files.forEach(doc => {
+      const key = doc.substring(includesPath.length + 1).split('.')[0];
+      reader(doc, (data) => {
+        objectMapper(data, key);
+      });
+    });
+  });
+  return includes;
+}
+
+//populate layout file with HTML from includes object
+//parser will be separate function, type will be posts or some other paths property
+//TODO --- allow for a "content" property that changes with each post, rather than hard-code
+function layout(path){
+  console.log(path);
+
 }
