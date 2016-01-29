@@ -133,6 +133,7 @@ function includes(includesPath){
       });
     });
   });
+  console.log(includes);
   return includes;
 }
 
