@@ -121,20 +121,14 @@ function writer(path, data){
 function includes(includesPath){
   let includes = {};
 
-  function objectMapper(data, key) {
-    includes[key] = data;
-  }
+  const files = glob.sync(includesPath + '/**/*.html');
 
-  glob(includesPath + '/**/*.html', (err, files) => {
-    if (err) console.log(err);
-    else files.forEach(doc => {
-      const key = doc.substring(includesPath.length + 1).split('.')[0];
-      reader(doc, (data) => {
-        objectMapper(data, key);
-        console.log(includes);
-      });
-    });
+  files.forEach(doc => {
+    const key = doc.substring(includesPath.length + 1).split('.')[0];
+    const data = fs.readFileSync(doc, 'utf8');
+    includes[key] = data;
   });
+  
   return includes;
 }
 
