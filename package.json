@@ -2,7 +2,7 @@
   "name": "blog-runner",
   "version": "0.1.1",
   "description": "A simple JavaScript static site generator built for bloggers",
-  "main": "app.js",
+  "main": "./lib/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
