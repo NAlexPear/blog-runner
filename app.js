@@ -54,17 +54,19 @@ function build(source){
       postDir(sitePath, post, 'day');
       postDir(sitePath, post, 'title');
 
-      //move markdown data to index.html file at root
+      //build object of template _includes from includes() function
+      const view = includes(paths.includes);
+
+      //move markdown and template (view) data to index.html file at root of post directories
       reader(doc, (data) => {
         const html = marked(data);
         const path = sitePath + '/' + post.year + '/' + post.month + '/' + post.day + '/' + post.title;
-        writer(path, html);
+        writer(paths.layouts, view, path, html);
       });
     });
   });
 
-  //build object of template includes from includes() function
-  includes(paths.includes);
+
 
 }
 
@@ -106,10 +108,10 @@ function postDir(sitePath, info, key){
 }
 
 //write marked data to an index.html file at the root of a given path
-function writer(path, data){
+function writer(layoutsPath, view, path, data){
   //build layout here from a 'type' paramenter (e.g. posts or landing page)
-  //TODO --- build layout :D
-  layout(path);
+  //add data as content to the view object, then use mustache to return final HTML for documents
+  layout(layoutsPath, view, data, 'posts');
 
   //write concatenated data to index.html
   fs.writeFile(path + '/index.html', data, (err) => {
@@ -128,14 +130,21 @@ function includes(includesPath){
     const data = fs.readFileSync(doc, 'utf8');
     includes[key] = data;
   });
-  
+
   return includes;
 }
 
-//populate layout file with HTML from includes object (generated with includes())
-//parser will be separate function, type will be posts or some other paths property
-//TODO --- allow for a "content" property that changes with each post
-function layout(path, type){
-  console.log('layout function called');
+//populate layout file with HTML from view object (generated with includes())
+//TODO --- remove hard-coded type values
+function layout(layoutsPath, view, data, type){
+  view.content = data;
+
+  let layout = '';
+  if (type === 'posts'){
+    layout = fs.readFileSync(layoutsPath + '/posts.html', 'utf8');
+    console.log(layout);
+  } else {
+    console.log('invalid layout type');
+  }
 
 }
