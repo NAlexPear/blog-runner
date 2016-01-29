@@ -1,8 +1,12 @@
-# Blog Runner
+[![npm version](https://badge.fury.io/js/blog-runner.svg)](https://badge.fury.io/js/blog-runner)
+[![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/blog-runner)
+
+![blog-runner logo](http://i.imgur.com/gKZaxcQ.png)
 
 ## A lightweight static site generator for bloggers built for the JavaScript environment.
 
-### Built and maintained by [Alex Pearson](https://alexpear.com)
+
+Built and maintained by [Alex Pearson](https://alexpear.com)
 
 
 Blog Runner is a simple static site generator that includes basic templating and Markdown support, built as a bare-bones replacement for [Jekyll](http://jekyllrb.com). Blog Runner is built on top of the [`mustache.js`](https://github.com/janl/mustache.js/) templating library and the [`marked`](https://github.com/chjj/marked) Markdown parser. The latest build can be seen in action on the author's blog: [alexpear.com](https://alexpear.com).
@@ -41,7 +45,7 @@ const blog = require('blog-runner');
 
 blog.build();
 ```
-By default, `build` runs from the location of the build file. To use a difference source directory, you can pass a directory path as a parameter to the `build` function.
+By default, `build` runs from the location of the build file. To use a different source directory, you can pass a directory path as a parameter to the `build` function.
 
 ```javascript
 const blog = require('blog-runner');
