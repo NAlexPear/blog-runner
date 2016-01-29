@@ -110,6 +110,7 @@ function writer(path, data){
   //build layout here from a 'type' paramenter (e.g. posts or landing page)
   //TODO --- build layout :D
   layout(path);
+
   //write concatenated data to index.html
   fs.writeFile(path + '/index.html', data, (err) => {
     if (err) console.log(err);
@@ -130,16 +131,17 @@ function includes(includesPath){
       const key = doc.substring(includesPath.length + 1).split('.')[0];
       reader(doc, (data) => {
         objectMapper(data, key);
+        console.log(includes);
       });
     });
   });
   return includes;
 }
 
-//populate layout file with HTML from includes object
+//populate layout file with HTML from includes object (generated with includes())
 //parser will be separate function, type will be posts or some other paths property
-//TODO --- allow for a "content" property that changes with each post, rather than hard-code
-function layout(path){
-  console.log(path);
+//TODO --- allow for a "content" property that changes with each post
+function layout(path, type){
+  console.log('layout function called');
 
 }
