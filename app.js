@@ -29,6 +29,7 @@ function files(source){
 //sets up directory structure in _site
 function build(source){
   const paths = files(source);
+  const view = includes(paths.includes);
 
   //build _site directory, unless it already exists
   const sitePath = paths.site;
@@ -54,17 +55,17 @@ function build(source){
       postDir(sitePath, post, 'day');
       postDir(sitePath, post, 'title');
 
-      //move markdown data to index.html file at root
+      //move markdown and template (view) data to index.html file at root of post directories
       reader(doc, (data) => {
         const html = marked(data);
         const path = sitePath + '/' + post.year + '/' + post.month + '/' + post.day + '/' + post.title;
-        writer(path, html);
+        writer(paths.layouts, view, path, html, 'posts');
       });
     });
   });
 
-  //build object of template includes from includes() function
-  includes(paths.includes);
+  //build landing page (index.html) using same writer function as for posts, without needing to read markdown
+  writer(paths.layouts, view, sitePath, '', 'landing');
 
 }
 
@@ -106,41 +107,36 @@ function postDir(sitePath, info, key){
 }
 
 //write marked data to an index.html file at the root of a given path
-function writer(path, data){
+function writer(layoutsPath, view, path, data, type){
   //build layout here from a 'type' paramenter (e.g. posts or landing page)
-  //TODO --- build layout :D
-  layout(path);
+  //add data as content to the view object, then use mustache to return final HTML for documents
+  const html = layout(layoutsPath, view, data, type);
+
   //write concatenated data to index.html
-  fs.writeFile(path + '/index.html', data, (err) => {
+  fs.writeFile(path + '/index.html', html, (err) => {
     if (err) console.log(err);
   });
 }
 
 //build object for mustache view from _includes
 function includes(includesPath){
-  var includes = {};
+  let includes = {};
 
-  function objectMapper(data, key) {
+  const files = glob.sync(includesPath + '/**/*.html');
+
+  files.forEach(doc => {
+    const key = doc.substring(includesPath.length + 1).split('.')[0];
+    const data = fs.readFileSync(doc, 'utf8');
     includes[key] = data;
-  }
-
-  glob(includesPath + '/**/*.html', (err, files) => {
-    if (err) console.log(err);
-    else files.forEach(doc => {
-      const key = doc.substring(includesPath.length + 1).split('.')[0];
-      reader(doc, (data) => {
-        objectMapper(data, key);
-      });
-    });
   });
-  console.log(includes);
   return includes;
 }
 
-//populate layout file with HTML from includes object
-//parser will be separate function, type will be posts or some other paths property
-//TODO --- allow for a "content" property that changes with each post, rather than hard-code
-function layout(path){
-  console.log(path);
+//populate layout file with HTML from view object (generated with includes())
+//TODO --- remove hard-coded type values
+function layout(layoutsPath, view, data, type){
+  view.content = data;
+  let layout = fs.readFileSync(layoutsPath + '/' + type + '.html', 'utf8');
 
+  return mustache.render(layout, view);
 }
