@@ -29,6 +29,7 @@ function files(source){
 //sets up directory structure in _site
 function build(source){
   const paths = files(source);
+  const view = includes(paths.includes);
 
   //build _site directory, unless it already exists
   const sitePath = paths.site;
@@ -54,19 +55,17 @@ function build(source){
       postDir(sitePath, post, 'day');
       postDir(sitePath, post, 'title');
 
-      //build object of template _includes from includes() function
-      const view = includes(paths.includes);
-
       //move markdown and template (view) data to index.html file at root of post directories
       reader(doc, (data) => {
         const html = marked(data);
         const path = sitePath + '/' + post.year + '/' + post.month + '/' + post.day + '/' + post.title;
-        writer(paths.layouts, view, path, html);
+        writer(paths.layouts, view, path, html, 'posts');
       });
     });
   });
 
-
+  //build landing page (index.html) using same writer function as for posts, without needing to read markdown
+  writer(paths.layouts, view, sitePath, '', 'landing');
 
 }
 
@@ -108,10 +107,10 @@ function postDir(sitePath, info, key){
 }
 
 //write marked data to an index.html file at the root of a given path
-function writer(layoutsPath, view, path, data){
+function writer(layoutsPath, view, path, data, type){
   //build layout here from a 'type' paramenter (e.g. posts or landing page)
   //add data as content to the view object, then use mustache to return final HTML for documents
-  const html = layout(layoutsPath, view, data, 'posts');
+  const html = layout(layoutsPath, view, data, type);
 
   //write concatenated data to index.html
   fs.writeFile(path + '/index.html', html, (err) => {
