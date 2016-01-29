@@ -119,7 +119,7 @@ function writer(path, data){
 
 //build object for mustache view from _includes
 function includes(includesPath){
-  var includes = {};
+  let includes = {};
 
   function objectMapper(data, key) {
     includes[key] = data;
