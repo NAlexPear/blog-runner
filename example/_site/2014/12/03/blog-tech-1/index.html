@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+<!-- Set the viewport width to device width for mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="shortcut icon" href="/theme/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/theme/images/favicon.ico" type="image/x-icon">
+<title>Alex Pearson</title>
+<!-- Included CSS Files, generated through Gulp -->
+<link rel="stylesheet" href="/theme/css/site.css">
+<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+<link rel="canonical" href="http://alexpear.com">
+<link rel="shortlink" href="http://alexpear.com">
+
+</head>
+
+<body>
+    <div>
+    <div class="topstuff">
+  <picture>
+    <source srcset="/theme/images/alexsmilin3_hi_res.jpg" media='(min-width:1280px)'>
+    <img srcset="/theme/images/alexsmilin3.jpg" width="100%" height="auto" alt="Alex's Home Page"></img>
+  </picture>
+    <div class="splash">
+        <a href="https://alexpear.com">
+            <div id="splashname">
+                ALEX PEARSON
+            </div>
+            <div id="splashtag">
+                educator / entrepreneur / web developer
+            </div>
+        </a>
+        <div class="desktop-only">
+          <ul>
+            <li><a href="https://github.com/nalexpear" title="github"><span class="ti ti-github"></span></a></li>
+            <li><a href="https://www.facebook.com/alex.pearson.568" title="facebook"><span class="ti ti-facebook"></span></a></li>
+            <li><a href="https://www.linkedin.com/pub/alex-pearson/a4/492/a16" title="linkedin"><span class="ti ti-linkedin"></span></a></li>
+            <li><a href="https://twitter.com/NAlexPearson" title="twitter"><span class="ti ti-twitter"></span></a></li>
+            <li class="contact-target"><a href="#" data-action="contact-form" title="email" alt="email Alex"><span class="ti ti-email"></span></a></li>
+          </ul>
+        </div>
+    </div>
+</div>
+<div class="desktop-only">
+  <ul class="navbubbles post-nav">
+      <li id="about">
+        <div class="navreact">
+          <a href="//alexpear.com" alt="Back to Home Page">
+            <div>home</div>
+          </a>
+        </div>
+      </li>
+      <li id="blog">
+        <div class="navreact">
+          <a href="//alexpear.com/blog" title="Alex's Blog" alt="Alex's Blog">
+            <div>blog</div>
+          </a>
+        </div>
+      </li>
+      <li id="contact">
+        <div class="navreact">
+          <a href="#" data-action ="contact-form" title="Contact Alex" alt="Contact Alex">
+            <div>contact</div>
+          </a>
+        </div>
+      </li>
+  </ul>
+</div>
+<div class="mobile-only">
+  <ul class="navbubbles post-nav" id="mobile-nav">
+    <li>
+      <div class="navreact">
+        <span class="ti ti-menu"></span>
+      </div>
+    </li>
+    <li>
+      <div class="navreact">
+        <span class="ti ti-email"></span>
+      </div>
+    </li>
+  </ul>
+  <ul id="menubar" class="mobile-only">
+      <li>
+        <a href="//alexpear.com" title="About Alex" alt="About Alex">
+            <div>home</div>
+        </a>
+      </li>
+      <li>
+        <a href="//alexpear.com/blog" title="Alex's Blog" alt="Alex's Blog">
+            <div>blog</div>
+        </a>
+      </li>
+  </ul>
+</div>
+<div class="hidden" id="mobile-contact-overlay">
+  <div class="mobile-only contact-form">
+    <form action="https://formspree.io/alex@alexpear.com" method="POST">
+      <span class="ti ti-close"></span>
+      <h3>Contact Alex</h3>
+      <br>
+      <label for="firstname">First Name:</label><br>
+      <input type="text" name="firstname" placeholder="first name" required><br>
+      <label for="lastname">Last Name:</label><br>
+      <input type="text" name="lastname" placeholder="last name" required><br>
+      <label for="sender">Your Email Address:</label><br>
+      <input type="email" name="sender" placeholder="email@youraddress.com" required>
+      <label for="subject">Message Subject:</label><br>
+      <input type="text" name="subject" value="new message for Alex"><br>
+      <label for="message">Message:</label><br>
+      <textarea name="message" placeholder="Write your message here"></textarea><br>
+      <div>
+        <input type="submit" value="send message">
+        <button type="button" name="cancel" class="cancel">cancel</button>
+      </div>
+    </form>
+    <br>
+    <div class="hidden">
+      <h4>Thanks for the message!</h4>
+      <p>I'll respond as soon as I can. Don't forget to also follow me on social media:</p>
+      <ul>
+        <li><a href="https://github.com/nalexpear" title="github"><span class="ti ti-github"></span></a></li>
+        <li><a href="https://www.facebook.com/alex.pearson.568" title="facebook"><span class="ti ti-facebook"></span></a></li>
+        <li><a href="https://www.linkedin.com/pub/alex-pearson/a4/492/a16" title="linkedin"><span class="ti ti-linkedin"></span></a></li>
+        <li><a href="https://twitter.com/NAlexPearson" title="twitter"><span class="ti ti-twitter"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div id="content-wrapper">
+        <div id="content">
+          <div class="blogpost">
+            <hr>
+<p>layout: posts
+title: Blog Tech 1
+author: Alex
+date: 2014-12-03</p>
+<hr>
+<h2 id="blog-tech-pt-1">Blog Tech pt.1</h2>
+<h3 id="-a-quick-look-at-the-tools-i-ve-used-to-build-this-blog">...a quick look at the tools I&#39;ve used to build this blog</h3>
+<p>While most of my posts will deal with more abstract &quot;builds&quot; (businesses, processes, campaigns),
+this one is more of a how-to on building a blog like this one. This blog is not a WordPress or Drupal site.
+Those CMSes are nice, as long as you like managing a server filled with dynamic content through a clunky interface.
+Security updates, software updates, server updates, php screw-ups... all of these things waste your time and effort.
+They provide some cool features, to be sure, but how many of those cumbersome baked-in tools do you need when you have a good understanding of some command-line tools,
+liquid (or mustache, or what have you) templating, and HTML/CSS/JavaScript?</p>
+<p>The answer, as it turns out, is not that many. And that&#39;s why this blog is built on <a href="http://jekyllrb.com/">jekyll</a>,
+a &quot;blog-aware&quot; tool for building static, templated blogs.</p>
+<p>It might not be the pinnacle of programming prowess or design, but I like the simplicity of this set-up, and I hope that you do too.</p>
+<p>Before I get to the set-up for this page, what features do we <em>really</em> need in a simple blog? Here&#39;s what I wanted, in order of importance.</p>
+<ul>
+<li>The ability to write posts anywhere in simple text format. No internet connection? No big deal, as long as offline files can be written in a format that can be converted into posts later.</li>
+<li>Static serving of data. Only one Apache server, no databases of former posts, no PHP.</li>
+<li>An intuitive directory structure.</li>
+<li>Simple templating and themes.</li>
+<li>Customizeable post presentation (archives, breadcrumbs, previews, etc.)</li>
+</ul>
+<p>And that&#39;s it. The first two points are especially key, since logging into a CMS dashboard can get really old, really fast.
+It can get old almost as quickly as debugging php errors between a SQL database and front-end content. And so, we use Jekyll.</p>
+<p>Jekyll is extremely simple to install, as long as you have a bit of familiarity with a terminal interface.
+You&#39;ll need to be comfortable moving around the directories in your site using <code>cd</code> instead of clicking a folder icon.
+But that&#39;s OK... using computers is just like reading. Leave the pretty pictures to the kids, because adults use words.
+(See <a href="http://linuxcommand.org/learning_the_shell.php">this incredibly useful site</a> for the source of that quote.)</p>
+<p>Jekyll works by &quot;baking&quot; templates, HTML/CSS, scripts, and markdown files into a static presentation of your blog posts.
+This baking can be done in any environment, but I&#39;ve taken a liking to the workflow provided by cloud-based IDEs like <a href="https://c9.io/">cloud9</a>.
+As a sometimes-Chromebook-user, I like having access to a full linux server whenver I need it, but you can do all of this work
+with jekyll on your own machine at home, too. In the case of this blog, all I had to do was fire up a terminal, <code>cd</code> into the <code>blog</code> sub-directory and enter:</p>
+<p>{% highlight bash %}
+~ $ gem install jekyll
+~ $ jekyll build
+~ $ jekyll serve --port $PORT --host $IP
+{% endhighlight %}</p>
+<p>This is also in the specific case of serving a Jekyll blog in a single sub-directory of a static site.
+I could also have built the entire site using Jekyll and still served the static pages (e.g. &quot;about me&quot;),
+but that seemed like overkill, since I would have to keep any locally-hosted previews running at all times if I wanted real-time updates.
+Either way works, so I went with a bit of separation between blog and page.</p>
+<p>Also of note: if you&#39;re running this site on a local machine instead of on a cloud-based environment or an external server,
+then there&#39;s no need for the <code>--port $PORT --host $IP</code> bit, as those are Jekyll flags being used to pass in cloud9-specific variables.</p>
+<p>The above commands (starting at <code>jekyll build</code>) will also only work if you have the correct <a href="http://jekyllrb.com/docs/structure/">directory structure</a>,
+with special importance given to the <code>_config.yml</code> file (see the docs on <code>_config</code> <a href="http://jekyllrb.com/docs/configuration/">here</a>). Take a look at the link on proper directory structure above.
+You&#39;ll notice a couple of things:</p>
+<ul>
+<li>Good &#39;ol <code>index.html</code> hanging out in the root directory. This will be the place where everything is smushed together and presented to the browser to display.</li>
+<li>A lot of directories (and one file) with the naming format <code>_name</code> instead of just <code>name</code>. Anything without the underscore is included as-is in the final <code>_site</code> folder (more on that later), whereas anything with an underscore is just a component to be used to build the final <code>index.html</code> files at the bottom of every directory.</li>
+<li>A mix of file extensions, from <code>*.txt</code> to <code>*.html</code> to <code>*.md</code> to <code>*.yml</code>. Jekyll takes all of these files and turns them into cool stuff.</li>
+</ul>
+<p>I&#39;ll save the meat of the explanation of how everything ties together for my next post on the tech behind the blog.
+For right now, though, it&#39;s enough to know that all of the <code>_posts</code> files are written in Markdown format, saved in with a naming convention that excludes capital letters,
+replaces spaces with hyphens, and includes the date in year-month-day- format at the beginning of the title, and that that information,
+combined with some of the front-end matter (more on that in the next tech post) allows Jekyll to build the final output into an <code>index.html</code>
+file that sits in a series of directories created according to the naming configuration outlined in <code>_config.yml</code>.</p>
+<p>And after it&#39;s all said and done, and you&#39;ve run <code>jekyll build</code> on your final product, Jekyll spits out a <code>_site</code> folder.
+That folder contains everything that needs to be uploaded via SSH or SFTP to the server.
+With SFTP, all you have to do (once you&#39;ve figured out how to connect to your web host from the command line) is use
+<code>put -r [directory or file]</code> on all of the contents of <code>_site</code>, and you&#39;re ready to go.</p>
+<p>And that&#39;s an introduction to getting a static blog up and running using Jekyll. In the next post, we&#39;ll talk
+about how the theming structure works and look a bit deeper into using Liquid Markup to create some of the neat blog
+features that we might miss from traditional blogging frameworks.</p>
+
+          </div>
+            
+<div class="about-me hidden">
+    <h4>My name is Alex, and I build things.</h4>
+    <br>
+    <br>
+    <p>Maybe not kitchen tables or log cabins (not yet, anyway), but you'll always find me building <i>something</i>.
+    Those somethings that I'm most proud of have been made-from-scratch businesses or programs. I take pride in creating organizations that are useful and meaningful (more on what that means later in <a href="http://alexpear.com/blog">my blog</a>).
+    </p>
+    <br>
+    <p>
+    The desire to build things has taken me a lot of places. The need to build has lead me to create teaching opportunities for musicians and artists, or help to turn a student-run nightclub into a successful event space, or create a place for unlikely athletes to meet their full potential, or build a program that helps aspiring programmers learn the skills that they need to change careers into full-time software development.
+    </p>
+    <br>
+    <p>
+    That's the most important thing to know about me. Some other less important information:</p>
+    </p>
+    <ul>
+        <li>Born in Dallas, TX, raised in Cedar Rapids, IA, educated in Northfield, MN, former resident and life-long fan of Nashville, TN.</li>
+        <li>I currently live in St. Louis with my lady love and a dog that looks like a mix of Yoda, a Wampa, and a Siberian Husky.</li>
+        <li>I was the founding Director of Curriculum, Instruction, and Outreach at <a href="http://claimacademystl.com">Claim Academy</a>, St. Louis's first developer bootcamp.</li>
+        <li>Currently, I work as a freelance web developer and technology education consultant.</li>
+        <li>I enjoy proper grammar and punctuation, and I'm a strong advocate for the Oxford comma.</li>
+        <li>To hire me, <a href='mailto:alex@alexpear.com'>send me a message</a></li>
+    </ul>
+    <p>
+    Thanks once again for visiting. If you're here to marvel at my professional accomplishments, you can visit the résumé link above.
+    If you'd like to see get a more personal view of my thoughts on building things, breaking things, or just being, check out <a href="http://alexpear.com/blog">my blog</a>.
+    </p>
+    <br>
+    <p>
+    I can always be contacted casually through social media, but you can also email me directly at alex@alexpear.com.
+    <br>
+    <br>
+    Cheers,<br>
+    -Alex
+    </p>
+
+</div>
+<div class="resume-info hidden">
+  <p> For a more complete view of my professional history, checkout out my LinkedInprofile or download my full résumé as a .pdf.</p>
+  <ul class="resume-links">
+      <li><span class="ti ti-linkedin"></span><br><a href="https://www.linkedin.com/in/nalexpearson">View my full LinkedIn profile</a></li>
+      <li><span class="ti ti-file"></span><br><a href="../download/AP2014ResumeNov.pdf">Download a .pdf of my full résumé</a></li>
+  </ul>
+  <br>
+  <br>
+  <div>
+    <div class="resume-drop">
+      <p class="resume-title">Click on a position to learn more</p>
+      <ul>
+        <li><span class="ti ti-location-arrow"></span>JavaScript Instructor, Savvy Coders
+          <div class="resume-drop-blurb">
+            <p>In partnership with renowned bootcamp Hack Reactor, built an intro to programming in HTML, CSS, and JavaScript. Classes launched in Nashville in late 2015. For more details, see the <a href="https://savvycoders.com">Savvy Coders website</a></p>
+          </div>
+        </li>
+        <li><span class="ti ti-location-arrow"></span>Freelance Web Developer
+          <div class="resume-drop-blurb">
+            <p>Custom websites built using HTML, CSS, and JavaScript, optimized for the modern web.</p>
+          </div>
+        </li>
+        <li><span class="ti ti-location-arrow"></span>Technology Education Consultant
+          <div class="resume-drop-blurb">
+            <p>Helped bootcamps across the country revitalize their online and in-person curriculum as a consultant.</p>
+          </div>
+        </li>
+        <li><span class="ti ti-location-arrow"></span>Director of Curriculum, Claim Academy
+          <div class="resume-drop-blurb">
+            <p>Built St. Louis's first developer bootcamp from the ground up. First class began 4 months after being hired, first Java developers graduated 7 months after joining the team, and all graduates connected to St. Louis technology jobs.</p>
+          </div>
+        </li>
+        <li><span class="ti ti-location-arrow"></span>Owner, Shackle Island CrossFit &amp; Weightlifting
+          <div class="resume-drop-blurb">
+            <p>Built Shackle Island CrossFit into Nashville's largest CrossFit and Weightlifting gym. SICF is still going strong under the management of former clients and athletes turned coaches.</p>
+          </div>
+        </li>
+        <li><span class="ti ti-location-arrow"></span>Public Relations Officer, Lion's Pause Nighclub
+          <div class="resume-drop-blurb">
+            <p>Promoted and managed events at St. Olaf College's student-run nightclub, including the largest single event in Lion's Pause history.</p>
+          </div>
+        </li>
+        <li><span class="ti ti-location-arrow"></span>President, DreamBox
+          <div class="resume-drop-blurb">
+            <p>After winning an Estenson Entrepreurial Grant, helped St. Olaf college students teach music and art to k-12 residents of Northfield, MN.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="preview-portfolio hidden"></div>
+<div class="desktop-only contact-form hidden">
+  <form action="https://formspree.io/alex@alexpear.com" method="POST">
+    <span class="ti ti-close mobile-only"></span>
+    <h3>Contact Alex</h3>
+    <br>
+    <label for="firstname">First Name:</label><br>
+    <input type="text" name="firstname" placeholder="first name" required><br>
+    <label for="lastname">Last Name:</label><br>
+    <input type="text" name="lastname" placeholder="last name" required><br>
+    <label for="sender">Your Email Address:</label><br>
+    <input type="email" name="sender" placeholder="email@youraddress.com" required>
+    <label for="subject">Message Subject:</label><br>
+    <input type="text" name="subject" value="new message for Alex"><br>
+    <label for="message">Message:</label><br>
+    <textarea name="message" placeholder="Write your message here"></textarea><br>
+    <div>
+      <input type="submit" value="send message">
+      <button type="button" name="cancel" class="cancel">cancel</button>
+    </div>
+  </form>
+  <br>
+  <div class="hidden">
+    <h4>Thanks for the message!</h4>
+    <p>I'll respond as soon as I can. Don't forget to also follow me on social media:</p>
+    <ul>
+      <li><a href="https://github.com/nalexpear" title="github"><span class="ti ti-github"></span></a></li>
+      <li><a href="https://www.facebook.com/alex.pearson.568" title="facebook"><span class="ti ti-facebook"></span></a></li>
+      <li><a href="https://www.linkedin.com/pub/alex-pearson/a4/492/a16" title="linkedin"><span class="ti ti-linkedin"></span></a></li>
+      <li><a href="https://twitter.com/NAlexPearson" title="twitter"><span class="ti ti-twitter"></span></a></li>
+    </ul>
+  </div>
+</div>
+
+        </div>
+    </div>
+    <div id="disqus_thread"></div>
+<script>
+    
+    var disqus_config = function () {
+        this.page.url = 'http://alexpear.com';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Alex's Blog (individual post)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//alexpear.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+    
+<footer>
+    <div class="socialmedia">
+        <ul>
+          <li><a href="https://github.com/nalexpear" title="github"><span class="ti ti-github"></span></a></li>
+          <li><a href="https://www.facebook.com/alex.pearson.568" title="facebook"><span class="ti ti-facebook"></span></a></li>
+          <li><a href="https://www.linkedin.com/pub/alex-pearson/a4/492/a16" title="linkedin"><span class="ti ti-linkedin"></span></a></li>
+          <li><a href="https://twitter.com/NAlexPearson" title="twitter"><span class="ti ti-twitter"></span></a></li>
+          <li class="contact-target"><a href="#" data-action="contact-form" title="email" alt="email Alex"><span class="ti ti-email"></span></a></li>
+        </ul>
+    </div>
+    <div class="copyright">©2014 Alex Pearson</div>
+</footer>
+
+    <script type="text/javascript" src="/theme/js/site.js"></script>
+</body>
+</html>
