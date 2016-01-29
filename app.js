@@ -111,10 +111,10 @@ function postDir(sitePath, info, key){
 function writer(layoutsPath, view, path, data){
   //build layout here from a 'type' paramenter (e.g. posts or landing page)
   //add data as content to the view object, then use mustache to return final HTML for documents
-  layout(layoutsPath, view, data, 'posts');
+  const html = layout(layoutsPath, view, data, 'posts');
 
   //write concatenated data to index.html
-  fs.writeFile(path + '/index.html', data, (err) => {
+  fs.writeFile(path + '/index.html', html, (err) => {
     if (err) console.log(err);
   });
 }
@@ -138,13 +138,7 @@ function includes(includesPath){
 //TODO --- remove hard-coded type values
 function layout(layoutsPath, view, data, type){
   view.content = data;
+  let layout = fs.readFileSync(layoutsPath + '/' + type + '.html', 'utf8');
 
-  let layout = '';
-  if (type === 'posts'){
-    layout = fs.readFileSync(layoutsPath + '/posts.html', 'utf8');
-    console.log(layout);
-  } else {
-    console.log('invalid layout type');
-  }
-
+  return mustache.render(layout, view);
 }
