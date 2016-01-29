@@ -1,9 +1,10 @@
 [![npm version](https://badge.fury.io/js/blog-runner.svg)](https://badge.fury.io/js/blog-runner)
 [![npm](https://img.shields.io/npm/l/express.svg)](https://www.npmjs.com/package/blog-runner)
 
-# Blog Runner
+![blog-runner logo](http://i.imgur.com/gKZaxcQ.png)
 
 ## A lightweight static site generator for bloggers built for the JavaScript environment.
+
 
 Built and maintained by [Alex Pearson](https://alexpear.com)
 
