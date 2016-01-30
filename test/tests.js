@@ -7,16 +7,19 @@ const Blog = require('../lib/app.js');
 const Helpers = require('../lib/helpers.js');
 
 
-const foo = 'bar';
-
-// describe('Helpers.reader()', () => {
-//   it('should throw an error if no target file is present', () => {
-//
-//     function cb(){ console.log('reader data passed through')};
-//     assert.throws(Helpers.reader('./fake/path/to/file.txt', cb), Error, 'reader() throws an Error for invalid paths');
-//
-//   });
-// });
+//HELPERS (from helpers.js)
+describe('Helpers.reader()', () => {
+  it('should return a String for valid data', () => {
+    Helpers.reader(__dirname + '/tests.js', (err, data) =>{
+      assert.isString(data);
+    });
+  });
+  it('should throw an error for an invalid path', () =>{
+    Helpers.reader('./fake/path/to/nowhere', (err, data) => {
+      assert.instanceOf(err, Error);
+    });
+  });
+});
 
 describe('Helpers.includes()', () => {
   const path = (__dirname + '/example/_includes');
