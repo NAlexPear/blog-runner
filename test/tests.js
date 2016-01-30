@@ -21,6 +21,24 @@ describe('Helpers.reader()', () => {
   });
 });
 
+describe('Helpers.writer()', function() {
+  it('should overwrite index.html files at the root of each _site directory branch', () => {
+    //check index.html files for changes here
+  });
+});
+
+describe('Helpers.files()', () => {
+  const output = Helpers.files(__dirname + '/example')
+  it('should return an Object', () => {
+    assert.isObject(output);
+  });
+  it('...with the correct keys', () => {
+    const targets = ['includes', 'posts', 'site', 'layouts'];
+    const keys = Object.keys(output);
+    assert.sameMembers(targets, keys);
+  });
+});
+
 describe('Helpers.includes()', () => {
   const path = (__dirname + '/example/_includes');
   const output = Helpers.includes(path);
@@ -44,5 +62,12 @@ describe('Helpers.includes()', () => {
     for(let key in output) {
       assert.include(output[key], '</');
     }
+  });
+});
+
+//MAIN app.js functions
+describe('Blog.build()', () => {
+  it('builds the entire blog!', () => {
+    //good luck testing that assertion...
   });
 });
