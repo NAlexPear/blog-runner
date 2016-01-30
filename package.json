@@ -4,7 +4,7 @@
   "description": "A simple JavaScript static site generator built for bloggers",
   "main": "./lib/app.js",
   "scripts": {
-    "test": "./test/tests.js"
+    "test": "mocha ./test/tests.js"
   },
   "repository": {
     "type": "git",
