@@ -1,5 +1,6 @@
 'use strict';
 
+const glob = require('glob');
 const chai = require('chai');
 const assert = require('chai').assert;
 const Blog = require('../lib/app.js');
@@ -7,13 +8,6 @@ const Helpers = require('../lib/helpers.js');
 
 
 const foo = 'bar';
-
-
-describe('the first test', function() {
-  it('should pass if foo is a string', function(){
-    assert.typeOf(foo, 'string', 'foo is a string!');
-  });
-});
 
 // describe('Helpers.reader()', () => {
 //   it('should throw an error if no target file is present', () => {
@@ -33,13 +27,19 @@ describe('Helpers.includes()', () => {
   });
 
   it('should assign key names identical to filenames in _includes directory', () => {
-    const names = ['disqus','extra','foot','head','nav','postnav'];
+    const files = glob.sync(path + '/**/*.html');
     const outputNames = Object.keys(output);
-    var i = 0;
+
+    let i = 0;
     outputNames.forEach(name => {
-      assert.equal(name, names[i]);
+      assert.include(files[i], name);
       i++;
     });
   });
 
+  it('should set HTML content as the property of each _includes key', () => {
+    for(let key in output) {
+      assert.include(output[key], '</');
+    }
+  });
 });
