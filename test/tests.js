@@ -1,5 +1,7 @@
 'use strict';
 
+const rmrf = require('rimraf');
+const fs = require('fs');
 const glob = require('glob');
 const chai = require('chai');
 const assert = require('chai').assert;
@@ -79,7 +81,45 @@ describe('Blog.index()', () => {
 });
 
 describe('Blog.build()', () => {
-  it('builds the entire blog!', () => {
-    //good luck testing that assertion...
+
+  //start test by removing _site directory
+  try{
+    rmrf.sync(__dirname + '/example/_site');
+  } catch(err) {
+    console.log(err);
+  }
+
+  //then rebuild
+  Blog.build(__dirname + '/example');
+
+  it('creates a _site directory if one does not already exist', () => {
+    const dirs = fs.readdirSync(__dirname + '/example');
+    assert.include(dirs, '_site');
+  });
+
+  it('...that includes a single valid index.html file at its root', () => {
+    const index = glob.sync(__dirname + '/example/_site/index.html');
+    assert.equal(index.length, 1);
+  });
+
+  it('...and that includes a separate directory for each year', () => {
+    const dirs = fs.readdirSync(__dirname + '/example/_site');
+    const index = Blog.index(__dirname + '/example')
+    let years = [];
+    index.forEach(post => {
+      if(years.indexOf(post.year) === -1) {
+        years.push(post.year);
+      }
+    });
+    years.forEach(year => {
+      assert.include(dirs, year);
+    });
+  });
+
+  it('creates a separate index.html file for each post', () => {
+    const files = glob.sync(__dirname + '/example/_site/**/index.html');
+    const posts = glob.sync(__dirname + '/example/_posts/**/*.md');
+
+    assert.equal(files.length, posts.length + 1);
   });
 });
