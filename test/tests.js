@@ -8,6 +8,21 @@ const assert = require('chai').assert;
 const Blog = require('../lib/app.js');
 const Helpers = require('../lib/helpers.js');
 
+//additions to String object for use with title formatting
+String.prototype.replaceAll = function(search, replace){
+    if (replace === undefined) {
+        return this.toString();
+    }
+
+    return this.replace(new RegExp('[' + search + ']', 'g'), replace);
+};
+
+String.prototype.capitalize = function(){
+  return this.replace(/(?:^|\s)\S/g, (a) => {
+    return a.toUpperCase();
+  });
+};
+
 //MAIN app.js functions
 describe('Blog.index()', () => {
   const output = Blog.index(__dirname + '/example');
@@ -53,7 +68,7 @@ describe('Blog.roll()', () => {
       return html;
     }
     //title test
-    it('titles', () => {
+    it('formatted titles', () => {
       const config = {
         title: false
       }
@@ -61,7 +76,8 @@ describe('Blog.roll()', () => {
       const index = Blog.index(__dirname + '/example');
       const titleTest = rollData();
       index.forEach(post => {
-        assert.notInclude(post.title, titleTest);
+        const titleFormatted = post.title.replaceAll('-', ' ').capitalize();
+        assert.notInclude(titleFormatted, titleTest);
       });
     });
 
