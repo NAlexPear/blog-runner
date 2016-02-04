@@ -8,6 +8,148 @@ const assert = require('chai').assert;
 const Blog = require('../lib/app.js');
 const Helpers = require('../lib/helpers.js');
 
+//MAIN app.js functions
+describe('Blog.index()', () => {
+  const output = Blog.index(__dirname + '/example');
+  it('returns an index array', () => {
+    assert.isArray(output);
+  });
+
+  it('...with length equal to the number of posts', () => {
+    const posts = glob.sync( __dirname + '/example/_posts/*.md');
+    assert.equal(output.length, posts.length);
+  });
+});
+
+describe('Blog.roll()', () => {
+  function rollInit(config){
+    //start test by removing blogroll.html include
+    try{
+      fs.unlinkSync(__dirname + '/example/_includes/blogroll.html');
+    } catch(err) {
+      console.log(err);
+    }
+    //then rebuild
+    if (config) Blog.roll(__dirname + '/example', config);
+    else Blog.roll(__dirname + '/example');
+  }
+
+  it('creates a new blogroll.html _includes file', () => {
+    rollInit();
+    const includesPath = __dirname + '/example/_includes';
+    const includes = glob.sync(includesPath + '/**/*.html');
+    let filenames = [];
+    includes.forEach(include => {
+      const filename = include.substring(includesPath.length + 1);
+      filenames.push(filename);
+    });
+    assert.include(filenames,'blogroll.html');
+  });
+
+  describe('responds correctly to custom configurations, including:', () => {
+    function rollData(){
+      const path = __dirname + '/example/_includes/blogroll.html';
+      const html = fs.readFileSync(path, 'utf8');
+      return html;
+    }
+    //title test
+    it('titles', () => {
+      const config = {
+        title: false
+      }
+      rollInit(config);
+      const index = Blog.index(__dirname + '/example');
+      const titleTest = rollData();
+      index.forEach(post => {
+        assert.notInclude(post.title, titleTest);
+      });
+    });
+
+    //date test
+    it('dates in MM/DD/YYYY format', () => {
+      const config = {
+        date: false,
+        dateFormat: 'MM/DD/YYYY'
+      }
+      rollInit(config);
+      const index = Blog.index(__dirname + '/example');
+      const dateTest = rollData();
+
+      index.forEach(post => {
+        const dateFormatted = post.month + '/' + post.day + '/' + post.year;
+        assert.notInclude(dateFormatted, dateTest);
+      });
+    });
+
+    //snippets test (from final post docs)
+    it('snippets', () => {
+      const config = {
+        snippet: false,
+        snippetChars: 200
+      }
+      rollInit(config);
+      const index = Blog.index(__dirname + '/example');
+      const snipTest = rollData();
+
+      function snipHtml(html){
+        const p = html.indexOf('<p>');
+        const snippet = html.substring(p, config.snippetChars + p) + '</p>';
+        return snippet;
+      };
+
+      index.forEach(post => {
+        const path = __dirname + '/example/_site/' + post.year + '/' + post.month + '/' + post.day + '/' + post.title + '/index.html';
+        const data = fs.readFileSync(path, 'utf8');
+        const snippetTest = snipHtml(data);
+        assert.notInclude(snippetTest, snipTest);
+      });
+    });
+
+  });
+});
+
+describe('Blog.build()', () => {
+  //start test by removing _site directory
+  try{
+    rmrf.sync(__dirname + '/example/_site');
+  } catch(err) {
+    console.log(err);
+  }
+
+  //then rebuild
+  Blog.build(__dirname + '/example');
+
+  it('creates a _site directory if one does not already exist', () => {
+    const dirs = fs.readdirSync(__dirname + '/example');
+    assert.include(dirs, '_site');
+  });
+
+  it('...that includes a single valid index.html file at its root', () => {
+    const index = glob.sync(__dirname + '/example/_site/index.html');
+    assert.equal(index.length, 1);
+  });
+
+  it('...and that includes a separate directory for each year', () => {
+    const dirs = fs.readdirSync(__dirname + '/example/_site');
+    const index = Blog.index(__dirname + '/example')
+    let years = [];
+    index.forEach(post => {
+      if(years.indexOf(post.year) === -1) {
+        years.push(post.year);
+      }
+    });
+    years.forEach(year => {
+      assert.include(dirs, year);
+    });
+  });
+
+  it('creates a separate index.html file for each post', () => {
+    const files = glob.sync(__dirname + '/example/_site/**/index.html');
+    const posts = glob.sync(__dirname + '/example/_posts/**/*.md');
+
+    assert.equal(files.length, posts.length + 1);
+  });
+});
 
 //HELPERS (from helpers.js)
 describe('Helpers.reader()', () => {
@@ -64,84 +206,5 @@ describe('Helpers.includes()', () => {
     for(let key in output) {
       assert.include(output[key], '</');
     }
-  });
-});
-
-//MAIN app.js functions
-describe('Blog.index()', () => {
-  const output = Blog.index(__dirname + '/example');
-  it('returns an index array', () => {
-    assert.isArray(output);
-  });
-
-  it('...with length equal to the number of posts', () => {
-    const posts = glob.sync( __dirname + '/example/_posts/*.md');
-    assert.equal(output.length, posts.length);
-  });
-});
-
-describe('Blog.roll()', () => {
-  //start test by removing blogroll.html include
-  try{
-    fs.unlinkSync(__dirname + '/example/_includes/blogroll.html');
-  } catch(err) {
-    console.log(err);
-  }
-
-  //then rebuild
-  Blog.roll(__dirname + '/example');
-
-  it('creates a new blogroll.html _includes file', () => {
-    const includesPath = __dirname + '/example/_includes';
-    const includes = glob.sync(includesPath + '/**/*.html');
-    let filenames = [];
-    includes.forEach(include => {
-      const filename = include.substring(includesPath.length + 1);
-      filenames.push(filename);
-    });
-    assert.include(filenames,'blogroll.html');
-  });
-});
-
-describe('Blog.build()', () => {
-  //start test by removing _site directory
-  try{
-    rmrf.sync(__dirname + '/example/_site');
-  } catch(err) {
-    console.log(err);
-  }
-
-  //then rebuild
-  Blog.build(__dirname + '/example');
-
-  it('creates a _site directory if one does not already exist', () => {
-    const dirs = fs.readdirSync(__dirname + '/example');
-    assert.include(dirs, '_site');
-  });
-
-  it('...that includes a single valid index.html file at its root', () => {
-    const index = glob.sync(__dirname + '/example/_site/index.html');
-    assert.equal(index.length, 1);
-  });
-
-  it('...and that includes a separate directory for each year', () => {
-    const dirs = fs.readdirSync(__dirname + '/example/_site');
-    const index = Blog.index(__dirname + '/example')
-    let years = [];
-    index.forEach(post => {
-      if(years.indexOf(post.year) === -1) {
-        years.push(post.year);
-      }
-    });
-    years.forEach(year => {
-      assert.include(dirs, year);
-    });
-  });
-
-  it('creates a separate index.html file for each post', () => {
-    const files = glob.sync(__dirname + '/example/_site/**/index.html');
-    const posts = glob.sync(__dirname + '/example/_posts/**/*.md');
-
-    assert.equal(files.length, posts.length + 1);
   });
 });
