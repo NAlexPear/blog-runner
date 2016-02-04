@@ -26,7 +26,7 @@ npm install --save-dev blog-runner
 
 ### Directory Structure
 
-`blog-runner` requires a specific directory structure to run correctly. You may execute `build` on any folder, as long as it is organized using a modified versino of the [Jekyll directory structure](http://jekyllrb.com/docs/structure/). The only modifications to this structure should be:
+`blog-runner` requires a specific directory structure to run correctly. You may execute `build` on any folder, as long as it is organized using a modified version of the [Jekyll directory structure](http://jekyllrb.com/docs/structure/). The only modifications to this structure should be:
 
 1. No `_config.yml` file (configuration is intentionally limited in early versions)
 2. No `index.html` file (one will be generated from the `landing.html` layout)
