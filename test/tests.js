@@ -66,6 +66,18 @@ describe('Helpers.includes()', () => {
 });
 
 //MAIN app.js functions
+describe('Blog.index()', () => {
+  const output = Blog.index(__dirname + '/example');
+  it('returns an index array', () => {
+    assert.isArray(output);
+  });
+
+  it('...with length equal to the number of posts', () => {
+    const posts = glob.sync( __dirname + '/example/_posts/*.md');
+    assert.equal(output.length, posts.length);
+  });
+});
+
 describe('Blog.build()', () => {
   it('builds the entire blog!', () => {
     //good luck testing that assertion...
