@@ -80,8 +80,30 @@ describe('Blog.index()', () => {
   });
 });
 
-describe('Blog.build()', () => {
+describe('Blog.roll()', () => {
+  //start test by removing blogroll.html include
+  try{
+    fs.unlinkSync(__dirname + '/example/_includes/blogroll.html');
+  } catch(err) {
+    console.log(err);
+  }
 
+  //then rebuild
+  Blog.roll(__dirname + '/example');
+
+  it('creates a new blogroll.html _includes file', () => {
+    const includesPath = __dirname + '/example/_includes';
+    const includes = glob.sync(includesPath + '/**/*.html');
+    let filenames = [];
+    includes.forEach(include => {
+      const filename = include.substring(includesPath.length + 1);
+      filenames.push(filename);
+    });
+    assert.include(filenames,'blogroll.html');
+  });
+});
+
+describe('Blog.build()', () => {
   //start test by removing _site directory
   try{
     rmrf.sync(__dirname + '/example/_site');
