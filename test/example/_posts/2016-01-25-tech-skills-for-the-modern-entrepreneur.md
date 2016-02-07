@@ -1,11 +1,3 @@
----
-layout: posts
-title: Tech Skills for the Modern Entrepreneur
-author: Alex
-date: 2016-01-25
-published: yes
----
-
 ## The Bare Minimum
 ### ...tech skills that every entrepreneur needs to succeed
 
@@ -26,17 +18,17 @@ Post-launch, I would also add the following skills:
 + technical hire vetting (through GitHub or other portfolio work)
 + understanding of the modern development process
 
-And this is not a skillset reserved for the 'technical co-founder'. This is the skillset for the *non-technical CEO*. It doesn't matter if you're in charge of a lumber company, a quilt shop, or a mobile application development team: you will, at some point, need to manage hire or manage some form of technical talent. More importantly, it's more and more likely that your employees and customers will be part of a generation that [interacts with others primarily through web-based tech](http://link.springer.com/article/10.1007/s10869-010-9172-7/fulltext.html), and [that tends to be frustrated by inefficient use of technology in both the workplace and the marketplace](http://rikleeninstitute.com/sites/default/files/images/rikleen.14millennials.pdf). That means communication, marketing, distribution, payment, and sales will all depend heavily on web technologies. All businesses, but especially new businesses, will have to adapt quickly or fail spectacularly. 
+And this is not a skillset reserved for the 'technical co-founder'. This is the skillset for the *non-technical CEO*. It doesn't matter if you're in charge of a lumber company, a quilt shop, or a mobile application development team: you will, at some point, need to manage hire or manage some form of technical talent. More importantly, it's more and more likely that your employees and customers will be part of a generation that [interacts with others primarily through web-based tech](http://link.springer.com/article/10.1007/s10869-010-9172-7/fulltext.html), and [that tends to be frustrated by inefficient use of technology in both the workplace and the marketplace](http://rikleeninstitute.com/sites/default/files/images/rikleen.14millennials.pdf). That means communication, marketing, distribution, payment, and sales will all depend heavily on web technologies. All businesses, but especially new businesses, will have to adapt quickly or fail spectacularly.
 
 Realistically, learning HTML, CSS, DNS, FTP, and basic programming can be daunting for the non-tech-savvy self-starter. It can take months (or years) to develop some of these skills. But I would argue that these skills ought to have been taught to us as middle schoolers, and it's up to business owners today to close the gap between the needs of the modern business world and the education that we may or may not have received in more formal settings. This shouldn't be a terribly foreign concept; schools rarely teach personal finance, networking skills, or product prototyping, and so it is the responsibility of every entrepreneur to learn these things on their own. I would argue that the tech skills listed above are worthy of just as much time and effort outside of formal schooling as the other essential elements of the entrepreneur's toolkit.
 
-Another way of thinking about this argument is in the form of 4 basic premises. I've covered each premise in detail, with specific examples, in earlier blog posts: 
+Another way of thinking about this argument is in the form of 4 basic premises. I've covered each premise in detail, with specific examples, in earlier blog posts:
 
-1. **Every company is a tech company**. More specifically, every company depends on web technologies to survive and thrive. Even in seemingly non-technical fields, web-based applications are critical to the success of a company. 
+1. **Every company is a tech company**. More specifically, every company depends on web technologies to survive and thrive. Even in seemingly non-technical fields, web-based applications are critical to the success of a company.
 2. **Every entrepreneur should be familiar with each of the critical components of their company**. Large companies may have the luxury (for now) of propping up the tech-illiterate through specialization. Small businesses and their owners don't have that luxury.
 3. **Knowing these tech skills nets immediate returns**. Knowing these tech basics will save you *thousands* as a business owner within your first year of business.
-4. **Knowing these tech skills nets lasting returns**. The tech-savvy will always be more productive, efficient, and responsive than their less technical competitors, and the results will show up in their business's balance sheets. 
+4. **Knowing these tech skills nets lasting returns**. The tech-savvy will always be more productive, efficient, and responsive than their less technical competitors, and the results will show up in their business's balance sheets.
 
 Assuming the above premises are true, then the idea that self-starters need these specific tech skills should be fairly obvious. Check out some of the specific examples pulled from my own experiences in the articles above if you need any more convincing! And check out my next post (coming soon) on the best ways to learn these essential tech skills.
 
-Disagree with me? Post it to the comments! But most of all, best of luck with your own trek towards a thriving venture. 
+Disagree with me? Post it to the comments! But most of all, best of luck with your own trek towards a thriving venture.

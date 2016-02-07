@@ -1,11 +1,3 @@
----
-layout: posts
-author: Alex
-title: Learn to be Useful
-date: 2015-04-30
-published: yes
----
-
 ## Learn to be useful
 ### ...and other lessons from "children's" TV
 

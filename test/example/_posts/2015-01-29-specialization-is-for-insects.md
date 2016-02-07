@@ -1,11 +1,3 @@
----
-layout: posts
-author: Alex
-title: Specialization is for Insects
-date: 2015-01-29
-published: yes
----
-
 ## Specialization is for Insects##
 ### ...or, how to be a wide pool with some clusters of depth
 

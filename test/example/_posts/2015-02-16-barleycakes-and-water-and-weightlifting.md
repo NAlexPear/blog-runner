@@ -1,13 +1,5 @@
----
-layout: posts
-author: Alex
-title: Barley Cakes and Water and Weightlifting
-date: 2015-02-16
-published: yes
----
-
-##Barleycakes and Water and Weightlifting
-###The importance of temperament on success and survival
+## Barleycakes and Water and Weightlifting
+### The importance of temperament on success and survival
 
 Happiness is a tricky thing to pin down. Some folks will tell you happiness
 happens at the extremes, in moments of indulgence.

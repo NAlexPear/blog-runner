@@ -1,11 +1,3 @@
----
-layout: posts
-title: Workflow pt. 1 - the Old Way
-author: Alex
-date: 2015-06-30
-published: yes
----
-
 ## Workflow pt. 1
 ### ...on the old way of doing things
 

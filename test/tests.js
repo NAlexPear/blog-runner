@@ -98,29 +98,55 @@ describe('Blog.roll()', () => {
     });
 
     //snippets test (from final post docs)
-    it('snippets', () => {
-      const config = {
-        snippet: false,
-        snippetChars: 200
+    describe('handles snippets correctly', () => {
+      //HELPER FUNCTIONS
+      //gets nth position of search term m from string str
+      function getPosition(str, m, n){
+        return str.split(m, n).join(m).length;
       }
-      rollInit(config);
-      const index = Blog.index(__dirname + '/example');
-      const snipTest = rollData();
-
-      function snipHtml(html){
-        const p = html.indexOf('<p>');
-        const snippet = html.substring(p, config.snippetChars + p) + '</p>';
+      //snips and sanitizes html data
+      function snipHtml(config, html){
+        const p = getPosition(html, '<p>', 2);
+        const htmlStripped = html.substring(p, config.snippetChars + p).replace(/<(?:.|\n)*?>/gm, '');
+        const snippet = '<p>' + htmlStripped + '</p>';
         return snippet;
       };
 
-      index.forEach(post => {
-        const path = __dirname + '/example/_site/' + post.year + '/' + post.month + '/' + post.day + '/' + post.title + '/index.html';
-        const data = fs.readFileSync(path, 'utf8');
-        const snippetTest = snipHtml(data);
-        assert.notInclude(snippetTest, snipTest);
+      //compares test snippet with data from the generated blogroll.html _include file
+      function compareHtml(config, test){
+        rollInit(config);
+        const index = Blog.index(__dirname + '/example');
+        const snipTest = rollData();
+        index.forEach(post => {
+          const path = __dirname + '/example/_site/' + post.year + '/' + post.month + '/' + post.day + '/' + post.title + '/index.html';
+          const data = fs.readFileSync(path, 'utf8');
+          const snippetTest = snipHtml(config, data);
+          test(snipTest, snippetTest);
+        });
+      };
+
+      //SNIPPET TESTS
+      it('snippets are excluded correctly', () => {
+        const config = {
+          snippet: false
+        };
+        function test(blogrollData, testData) {
+          assert.notInclude(blogrollData, testData);
+        };
+        compareHtml(config, test);
+      });
+
+      it('sanitizes snippet HTML', () => {
+        const config = {
+          snippet: true,
+          snippetChars: 200
+        };
+        function test(blogrollData, testData) {
+          assert.include(blogrollData, testData);
+        };
+        compareHtml(config, test);
       });
     });
-
   });
 });
 
