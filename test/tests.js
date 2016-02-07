@@ -136,7 +136,7 @@ describe('Blog.roll()', () => {
       }
       //snips and sanitizes html data
       function snipHtml(config, html){
-        const p = getPosition(html, '<p>', 2);
+        const p = html.indexOf('<p>');
         const htmlStripped = html.substring(p, config.snippetChars + p).replace(/<(?:.|\n)*?>/gm, '');
         const snippet = '<p>' + htmlStripped + '</p>';
         return snippet;
@@ -249,7 +249,7 @@ describe('Helpers.files()', () => {
     assert.isObject(output);
   });
   it('...with the correct keys', () => {
-    const targets = ['includes', 'posts', 'site', 'layouts'];
+    const targets = ['includes', 'posts', 'site', 'layouts', 'mixins'];
     const keys = Object.keys(output);
     assert.sameMembers(targets, keys);
   });

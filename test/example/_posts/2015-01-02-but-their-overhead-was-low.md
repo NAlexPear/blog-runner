@@ -1,4 +1,4 @@
-##...But Their Overhead Was Low
+## ...But Their Overhead Was Low
 
 There are probably too many TED talks on this page,
 but [here's another one anyway](http://www.ted.com/talks/dan_pallotta_the_way_we_think_about_charity_is_dead_wrong?language=en).
