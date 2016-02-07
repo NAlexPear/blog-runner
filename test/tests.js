@@ -39,8 +39,30 @@ describe('Blog.index()', () => {
 describe('Blog.mixin()', () => {
   const path = __dirname + '/example';
   function testMix(){ Blog.mixin(path); }
+
   it('executes files from the _mixins directory', () => {
     assert.doesNotThrow(testMix, Error);
+  });
+
+  it('creates a new _includes file with the same name as the mixin', () => {
+    const includes = glob.sync(path + '/_includes/*.html');
+    const mixins = glob.sync(path + '/_mixins/*.js');
+
+    function filenameParse(filename) {
+      const file = filename.split('/').slice(-1)[0];
+      const name = file.split('.')[0];
+      return name;
+    };
+
+    let includesNames = [];
+    includes.forEach(include => {
+      const includeName = filenameParse(include);
+      includesNames.push(includeName);
+    });
+    mixins.forEach(mixin => {
+      const mixinName = filenameParse(mixin);
+      assert.include(includesNames, mixinName);
+    });
   });
 });
 
