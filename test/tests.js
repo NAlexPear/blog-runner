@@ -36,6 +36,14 @@ describe('Blog.index()', () => {
   });
 });
 
+describe('Blog.mixin()', () => {
+  const path = __dirname + '/example';
+  function testMix(){ Blog.mixin(path); }
+  it('executes files from the _mixins directory', () => {
+    assert.doesNotThrow(testMix, Error);
+  });
+});
+
 describe('Blog.roll()', () => {
   function rollInit(config){
     //start test by removing blogroll.html include
