@@ -1,6 +1,6 @@
 {
   "name": "blog-runner",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A simple JavaScript static site generator built for bloggers",
   "main": "./lib/app.js",
   "scripts": {
