@@ -6,14 +6,18 @@
 </head>
 
 <body>
-  <div id="content">
-    <div class="blogpost">
-      {{{ blogroll }}}
+  <div class="container">
+    {{{ banner }}}
+    <div id="content" class="row">
+      <div class="blogpost col-8">
+        {{{ blogroll }}}
+      </div>
+      <div class="col-4">
+        {{{ sidebar }}}
+      </div>
     </div>
-    <div class="sidebar">
-      {{{ sidebar }}}
-    </div>
+    {{{ foot }}}
   </div>
-  {{{ foot }}}
+  {{{ scripts }}}
 </body>
 </html>

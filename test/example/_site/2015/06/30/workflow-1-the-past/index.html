@@ -8,13 +8,15 @@
 <link rel="shortcut icon" href="/theme/images/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/theme/images/favicon.ico" type="image/x-icon">
 <title>Blog Runner Test Blog</title>
+<link rel="stylesheet" href="/theme/minimal.css" media="screen" title="no title" charset="utf-8">
 
 </head>
 
 <body>
-  <div id="content">
-    <div class="blogpost">
-      <h2 id="workflow-pt-1">Workflow pt. 1</h2>
+  <div class="container">
+    <div id="content" class="row">
+      <div class="blogpost col-12">
+        <h2 id="workflow-pt-1">Workflow pt. 1</h2>
 <h3 id="-on-the-old-way-of-doing-things">...on the old way of doing things</h3>
 <p>It used to be (in what some <em>might</em> be tempted to call the Good &#39;Ol Days) that all it took to start developing for the web was an <code>index.html</code> file. Then we started getting fancy: maybe we need a separate stylesheet, how about some external JavaScript, maybe some extra assets... and then things got complex. Not bad, by any means, just more complex. The barriers to entry have risen a bit, but that&#39;s better for the web in general. Even if we have to give up glorious the <a href="http://www.warnerbros.com/archive/spacejam/movie/jam.htm">glorious websites of the 90&#39;s</a> in the process, it&#39;s nice to know that standards across the Web are, in general, being raised.</p>
 <p>Part of that move to a faster, cleaner, more robust Web requires more focus on process when developing. One person can&#39;t possibly hope to remain competitive in the WebDev space while coding every feature by hand or subjecting themselves to an antiquated build routine. This series on workflow (a three-parter, if I can keep myself from rambling too much) will go over my personal experience with workflow improvement for modern web development. We&#39;ll start with my process of yesteryear (and the process by which I pushed the first version of this site) in this post, then cover my current toolkit and build routine in part two, and finally take a look at what will be coming up next in making my personal process more effective, efficient, and enjoyable. Hopefully my journey from process-to-process will be helpful for you as well. Whether it&#39;s a positive or negative example, I hope you at least learn something.</p>
@@ -85,12 +87,15 @@ else {
 <p>All of this can easily be done within the Cloud9 workspace, too. The problem (besides the latter issues mentioned above) gets to be the tedium at times. <code>git checkout optimized</code> + <code>git merge master</code> + <code>perl compressor.pl</code> + <code>git add .</code> + <code>git commit -m &quot;Commit message&quot;</code> + <code>git push origin optimized</code> + <code>sftp [username]@[hostname]</code> + <code>put [filename]</code> + <code>put -r [directory name]</code> is a long operation for every single push. Add in a command-line <a href="https://developers.google.com/speed/docs/insights/MinifyResources?hl=en">minifier and uglifier</a> before compression, and you&#39;ve got quite the set of tasks to run before you can call the job done.</p>
 <p>If only there were some sort of <em>task runner</em> that we could use to speed up the process. Stay tuned for the next post about workflow to learn how we might automate the processes above. Until then, have fun compressing assets from the command line!</p>
 
+      </div>
     </div>
-  </div>
-  
+    
 <footer>
     <div class="copyright">©2016 Alex Pearson</div>
 </footer>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 </body>
 </html>

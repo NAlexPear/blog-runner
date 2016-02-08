@@ -2,7 +2,7 @@
 //but eventually, each mixin should be equivalent to a "script" tag IIFE
 //with the Index option passed in... no modules required
 // // (or maybe module-style is an option)
-
+'use strict';
 const Blog = require('../../../lib/app.js');
 
 const Index = Blog.index(__dirname + '/../../example');
@@ -11,6 +11,14 @@ const Index = Blog.index(__dirname + '/../../example');
 //or just port it in automatically?
 module.exports = {
     output(){
-      console.log(Index);
+      let html = '<div class="sidebar"><ul>';
+
+      Index.forEach(post => {
+        const path = post.year + '/' + post.month + '/' + post.day + '/' + post.title;
+        html+= '<li><a href="' + path + '">' + post.title + '</a></li>';
+      });
+
+      html+= '</ul></div>';
+      return html;
     }
 }
